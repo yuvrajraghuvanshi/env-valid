@@ -1,3 +1,5 @@
+import { convertToType } from "./utils";
+
 export interface ValidationSchema{
     [key: string]: ValidationConfig;
 }
@@ -6,8 +8,7 @@ export interface ValidationConfig {
   type: "string"|"boolean"|"number"|"array"|"object"|"enum";
   required?: boolean;
   default?:any;
-  enum?:any[
-  ];
+  enum?:any[];
   pattern?: RegExp;
   min?: number;
   max?: number;
@@ -27,5 +28,5 @@ export interface EnvValidatorOptions{
 }
 
 export type ValidatedEnv<T extends ValidationSchema> = {
-    [K in keyof T]: ReturnType<typeof convertToType<T[K]['type']>>;
+    [K in keyof T]: any;
 }

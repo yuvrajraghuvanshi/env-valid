@@ -1,16 +1,45 @@
 {
   "name": "env-validator",
   "version": "1.0.0",
-  "description": "A lightweight package to validate and type-check environment variables.",
+  "description": "TypeScript environment variables validator with advanced features",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build",
+    "example": "ts-node examples/basic-usage.ts"
   },
   "keywords": [
+    "environment",
     "env",
     "validator",
-    "safe-env"
+    "typescript",
+    "dotenv",
+    "config",
+    "validation"
   ],
-  "author": "Yuvraj",
-  "license": "ISC"
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": "Yuvraj Raghuvanshi",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^18.19.84",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^8.57.1",
+    "jest": "^29.7.0",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }

@@ -53,7 +53,8 @@ export function convertToType(value:string,config:ValidationConfig):any {
             case 'array':
               converted=value.startsWith('[')? JSON.parse(value): value.split(',').map(v=>v.trim());
               if(config.items){
-                    converted.forEach((item:any)=>convertToType(item,config.items));
+                    converted.forEach((item:any)=> typeof item === 'string' ? convertToType(item, config.items as ValidationConfig) : item
+              )
                 }
                 if (config.min !== undefined && converted.length < config.min) {
                     throw new Error(`Array should have at least ${config.min} items`);
@@ -77,9 +78,12 @@ export function convertToType(value:string,config:ValidationConfig):any {
                 }
                 break;
             case 'enum':
-                if(!config.enum.includes(value)){
-                    throw new Error(`Invalid value for ${config.errorMessage || config.type}: ${value}`);
+                if(!config.enum || !Array.isArray(config.enum)) {
+                    throw new Error('Enum validation requires an enum array in config');
                 }
+                if (!config.enum.includes(value)) {
+                    throw new Error(`Value must be one of: ${config.enum.join(', ')}`);
+                  }
                 converted = value;
                 break;
             default:
@@ -95,27 +99,27 @@ export function convertToType(value:string,config:ValidationConfig):any {
 
 export function logger(level:string,message:string,options:{logLevel:string}){
     if (options.logLevel === 'none') return;
-  const levels={
-    error: 0,
-    warn: 1,
-    info: 2
-  }
-   if(levels[level]<=levels[options.logLevel]){
-    const prefix=`[env-validator] ${level.toUpperCase}`;
-
-    switch(level){
-        case 'error':
-        console.error(prefix, message);
-        break;
-        case 'warn':
-        console.warn(prefix, message);
-        break;
-        case 'info':
-        console.info(prefix, message);
-        break;
-        default:
-        console.log(prefix, message);
-        break;
-    }
-   }
+    const levels: Record<'error' | 'warn' | 'info', number> = {
+        error: 0,
+        warn: 1,
+        info: 2
+      };
+      if (level in levels && options.logLevel in levels) {
+        if (levels[level as keyof typeof levels] <= levels[options.logLevel as keyof typeof levels]) {
+          const prefix = `[env-validator] ${level.toUpperCase()}`;
+          switch (level) {
+            case 'error':
+              console.error(prefix, message);
+              break;
+            case 'warn':
+              console.warn(prefix, message);
+              break;
+            case 'info':
+              console.info(prefix, message);
+              break;
+            default:
+              console.log(prefix, message);
+          }
+        }
+      }
 }
