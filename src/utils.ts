@@ -1,9 +1,9 @@
-import { ValidationConfig } from "./types";
+import { ValidationConfig } from './types';
 
 
 export function convertToType(value:string,config:ValidationConfig):any {
     const {type} = config;
-    if(value === undefined||value === null|| value === ""){
+    if(value === undefined||value === null|| value === ''){
         if(config.required && !config.allowNull){
             throw new Error('Value is required and cannot be null or empty');
         }
@@ -27,10 +27,10 @@ export function convertToType(value:string,config:ValidationConfig):any {
                 break;
             case 'boolean':
                 const lower=value.toLowerCase();
-                if(["true","y","yes","1"].includes(lower)){
+                if(['true','y','yes','1'].includes(lower)){
                     converted = true;
                 }
-                else if(["false","n","no","0"].includes(lower)){
+                else if(['false','n','no','0'].includes(lower)){
                     converted = false;
                 }
                 else{

@@ -1,11 +1,10 @@
-import { convertToType } from "./utils";
 
 export interface ValidationSchema{
     [key: string]: ValidationConfig;
 }
 
 export interface ValidationConfig {
-  type: "string"|"boolean"|"number"|"array"|"object"|"enum";
+  type:'string'|'boolean'|'number'|'array'|'object'|'enum';
   required?: boolean;
   default?:any;
   enum?:any[];

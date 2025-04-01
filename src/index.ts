@@ -1,5 +1,5 @@
-import { createEnvValidator } from "./validator";
-import { ValidatedEnv,ValidationConfig,ValidationSchema,EnvValidatorOptions } from "./types";
+import { createEnvValidator } from './validator';
+import { ValidatedEnv,ValidationConfig,ValidationSchema,EnvValidatorOptions } from './types';
 
 
 export {createEnvValidator};

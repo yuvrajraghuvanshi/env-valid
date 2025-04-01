@@ -1,5 +1,5 @@
-import { EnvValidatorOptions, ValidatedEnv, ValidationSchema } from "./types";
-import { convertToType, logger } from "./utils";
+import { EnvValidatorOptions, ValidatedEnv, ValidationSchema } from './types';
+import { convertToType, logger } from './utils';
 
 
 
@@ -17,7 +17,7 @@ export function createEnvValidator<T extends ValidationSchema>(
 ){
     const mergedOptions = {...DEFAULT_OPTIONS,...options,logLevel: options.logLevel || 'error'};
     const envVars = 
-    typeof process !== "undefined" && !mergedOptions.ignoreProcessEnv
+    typeof process !== 'undefined' && !mergedOptions.ignoreProcessEnv
       ? { ...process.env, ...(environmentVars || {}) }
       : environmentVars || {};
    const result:Record<string,any>={};

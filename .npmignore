@@ -1,0 +1,38 @@
+
+# .npmignore
+# Include dist folder in npm package, even if it's in .gitignore
+!dist/
+
+# Source files (already compiled to dist)
+src/
+test/
+examples/
+
+# Configuration files
+tsconfig.json
+.eslintrc.js
+.prettierrc
+jest.config.js
+
+# CI/CD
+.github/
+.travis.yml
+.gitlab-ci.yml
+
+# Test files
+coverage/
+*.spec.ts
+*.test.ts
+
+# Development tools
+.vscode/
+.idea/
+.editorconfig
+
+# Documentation assets
+docs/
+assets/
+
+# Miscellaneous
+.DS_Store
+*.log
