@@ -1,4 +1,4 @@
-# env-validator
+# env-valid
 
 A TypeScript-based environment variable validator with advanced features for Node.js applications.
 
@@ -17,13 +17,13 @@ A TypeScript-based environment variable validator with advanced features for Nod
 ## Installation
 
 ```bash
-npm install env-validator
+npm install env-valid
 ```
 
 ## Basic Usage
 
 ```typescript
-import { createEnvValidator } from 'env-validator';
+import { createEnvValidator } from 'env-valid';
 
 // Define your schema
 const env = createEnvValidator({

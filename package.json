@@ -1,6 +1,6 @@
 {
-  "name": "env-validator",
-  "version": "1.0.0",
+  "name": "env-valid",
+  "version": "1.0.1",
   "description": "TypeScript environment variables validator with advanced features",
   "main": "index.js",
   "scripts": {

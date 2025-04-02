@@ -106,7 +106,7 @@ export function logger(level:string,message:string,options:{logLevel:string}){
       };
       if (level in levels && options.logLevel in levels) {
         if (levels[level as keyof typeof levels] <= levels[options.logLevel as keyof typeof levels]) {
-          const prefix = `[env-validator] ${level.toUpperCase()}`;
+          const prefix = `[env-valid] ${level.toUpperCase()}`;
           switch (level) {
             case 'error':
               console.error(prefix, message);
